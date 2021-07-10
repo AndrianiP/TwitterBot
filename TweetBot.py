@@ -35,7 +35,7 @@ for tweet in tweepy.Cursor(api.user_timeline, chloe, since=latestTweetID).items(
             print(tweet.text)
             print(tweet.id)
             tweet.favorite()
-            api.update_status(status = 'Have you seen the killer bean movie?', in_reply_to_status_id = latestTweetIDChloe , auto_populate_reply_metadata=True)
+            api.update_status(status = 'Have you seen the killer bean movie?', in_reply_to_status_id = latestTweetID , auto_populate_reply_metadata=True)
             MakeFile('LatestTweetID.py','latestTweetChloe = '+tweet.id_str)
             print("Current ID is larger: " +tweet.id_str)
             print("\nOld tweet (in file): "+str(latestTweetID))
