@@ -4,3 +4,4 @@ LatestTweetID.py
 bot.py
 geckodriver.log
 get-pip.py
+__pycache__/
