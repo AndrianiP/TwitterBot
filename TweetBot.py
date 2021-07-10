@@ -15,7 +15,7 @@ chloe = screen_name = usernameOne
 zay = screen_name = usernameTwo
 
 latestTweetID = since_id = latestTweet
-
+#latestTweetIDZay = since_id = latestTweetZay
 
 filepath = os.getcwd()
 
@@ -35,14 +35,12 @@ for tweet in tweepy.Cursor(api.user_timeline, chloe, since=latestTweetID).items(
             print(tweet.text)
             print(tweet.id)
             tweet.favorite()
-            api.update_status(status = 'Have you seen the killer bean movie?', in_reply_to_status_id = latestTweetID , auto_populate_reply_metadata=True)
-            MakeFile('LatestTweetID.py','latestTweet = '+tweet.id_str)
+            api.update_status(status = 'Have you seen the killer bean movie?', in_reply_to_status_id = latestTweetIDChloe , auto_populate_reply_metadata=True)
+            MakeFile('LatestTweetID.py','latestTweetChloe = '+tweet.id_str)
             print("Current ID is larger: " +tweet.id_str)
             print("\nOld tweet (in file): "+str(latestTweetID))
-        else:
-            print("sleep 2 minutes")
-            time.sleep(120)
-            print("Should Be 2 minutes")
     except Exception as e:
         print(e)
+    print("NO TWEETS WE ARE SLEEPING")
+    time.sleep(120)
     
