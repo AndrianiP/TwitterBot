@@ -25,22 +25,24 @@ def MakeFile(file_name, newID):
             newID
         )
 
+def likeComment():
+    tweet.favorite()
+    api.update_status(status='If you get this that means the bot i created is working... How long did it take? It doesnt matter, I wont miss a post!',
+                      in_reply_to_status_id=latestTweetID, auto_populate_reply_metadata=True)
+    MakeFile('LatestTweetID.py', 'latestTweet = '+tweet.id_str)
+    sleep(3)
+
 for tweet in tweepy.Cursor(api.user_timeline, chloe, since=latestTweetID).items():
     tempID = tweet.id
+
     try:
         if(tempID > latestTweetID):
             latestTweetID = tempID
-            print("\n\n")
-            print(tweet.text)
-            print(tweet.id)
-            tweet.favorite()
-            api.update_status(status='If you get this that means the bot i created is working... How long did it take? It doesnt matter, I wont miss a post!',
-                              in_reply_to_status_id=latestTweetID, auto_populate_reply_metadata=True)
-            MakeFile('LatestTweetID.py', 'latestTweet = '+tweet.id_str)
-            print("Current ID is larger: " + tweet.id_str)
-            print("\nOld tweet (in file): "+str(latestTweetID))
-            sleep(2)
+            print("\nChloe Tweeted: "+tweet.text)
+            print(tweet.created_at)
+            likeComment()
     except Exception as e:
         print(e)
     print("NO TWEETS WE ARE SLEEPING")
     time.sleep(120)
+
