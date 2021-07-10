@@ -30,7 +30,7 @@ def likeComment():
     api.update_status(status='If you get this that means the bot i created is working... How long did it take? It doesnt matter, I wont miss a post!',
                       in_reply_to_status_id=latestTweetID, auto_populate_reply_metadata=True)
     MakeFile('LatestTweetID.py', 'latestTweet = '+tweet.id_str)
-    sleep(3)
+    time.sleep(3)
 
 for tweet in tweepy.Cursor(api.user_timeline, chloe, since=latestTweetID).items():
     tempID = tweet.id
